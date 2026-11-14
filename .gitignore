@@ -1,4 +1,3 @@
-@"
 node_modules/
 .next/
 .env
@@ -8,4 +7,3 @@ __pycache__/
 .venv/
 venv/
 .vercel/
-"@ | Out-File -Encoding ascii .gitignore
