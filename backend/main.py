@@ -13,10 +13,22 @@ DATA = ROOT / "data" / "student_performance_dataset.csv"
 FEATURES = ["attendance_percentage", "assignment_score", "midterm_score", "practical_score", "final_exam_score"]
 
 app = FastAPI(title="Student Performance AI API", version="1.0.0")
-origin = os.getenv("FRONTEND_ORIGIN", "*")
-app.add_middleware(CORSMiddleware, allow_origins=["*"] if origin == "*" else [origin],
-                   allow_credentials=False, allow_methods=["GET", "POST"], allow_headers=["*"])
 
+origins = [
+    o.strip()
+    for o in os.getenv(
+        "FRONTEND_ORIGIN",
+        "https://student-performance-ai-m7dx.vercel.app",
+    ).split(",")
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_origin_regex=r"https://student-performance-ai-.*\.vercel\.app",
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 _artifacts = None
 def load_artifacts():
     global _artifacts
