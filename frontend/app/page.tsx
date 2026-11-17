@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Activity, BrainCircuit, GraduationCap, ShieldCheck, Sparkles } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 const API=(process.env.NEXT_PUBLIC_API_URL||"https://backend-six-liart-90.vercel.app").replace(/\/$/,"");
-type
 type Result={student_id:string;decision_tree:{prediction:string;probabilities:Record<string,number>};random_forest:{prediction:string;probabilities:Record<string,number>};models_agree:boolean;weak_areas:string[];support_recommendations:string[];notice:string};
 export default function Home(){
  const [metrics,setMetrics]=useState<any>(null),[importance,setImportance]=useState<any>(null),[health,setHealth]=useState("Checking API"),[result,setResult]=useState<Result|null>(null),[error,setError]=useState(""),[busy,setBusy]=useState(false);
